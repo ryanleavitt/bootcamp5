@@ -61,11 +61,10 @@ exports.delete = function(req, res) {
 
   /** TODO **/
   /* Remove the article */
-  Listing.findOneAndRemove({_id: listing._id}, function(err,listing){
-    if(err){
-      console.log(err);
-      res.status(404).send(err);
-    }else res.status(300).send(listing);
+
+  listing.remove(function(err){
+    if(err) res.status(400).send(err);
+    else res.end();
   });
 };
 
