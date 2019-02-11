@@ -32,7 +32,7 @@ exports.create = function(req, res) {
 
 /* Show the current listing */
 exports.read = function(req, res) {
-  /* send back the listing as json from the request */
+   //send back the listing as json from the request 
   res.json(req.listing);
 };
 
@@ -43,6 +43,16 @@ exports.update = function(req, res) {
   /** TODO **/
   /* Replace the article's properties with the new properties found in req.body */
   /* Save the article */
+  listing.name=req.body.name;
+  listing.code=req.body.code;
+  listing.address=req.body.address;
+
+  listing.save(function(err){
+    if(err){
+      console.log(err);
+      res.status(404).send(err);
+    }else res.json(listing);
+  });
 };
 
 /* Delete a listing */
@@ -51,12 +61,22 @@ exports.delete = function(req, res) {
 
   /** TODO **/
   /* Remove the article */
+  Listing.findOneAndRemove({_id: listing._id}, function(err,listing){
+    if(err){
+      console.log(err);
+      res.status(404).send(err);
+    }else res.status(300).send(listing);
+  });
 };
 
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
   /** TODO **/
   /* Your code here */
+  Listing.find().sort('code').exec(function(err,data){
+    if(err) res.status(404).send(err);
+    else res.json(data);
+  });
 };
 
 /* 
@@ -76,3 +96,5 @@ exports.listingByID = function(req, res, next, id) {
     }
   });
 };
+
+

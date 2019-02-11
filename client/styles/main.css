@@ -6,3 +6,32 @@
   max-height: 400px;
   overflow: auto;
 }
+
+
+
+.jumbotron {
+	padding-top: 20px;
+	border: 2px solid blue;
+  	border-radius: 5px;
+}
+
+.container {
+	margin: 25px 25px;
+}
+
+#uf {
+	color: blue;
+	background-color: orange;
+	text-align: center;
+	border-radius: 20px;
+}
+
+#delete {
+	background-color: red;
+	border-radius: 60%;
+	display: inline-block;
+	padding: 10px;
+}
+
+
+
